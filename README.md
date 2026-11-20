@@ -58,7 +58,7 @@ Normally you open `Start.exe` and press its bottom-right button to start the gam
 **Install:** copy `AstroRanger_Play.exe` and `AstroRanger_Play.ini` into the game folder. To keep the launcher somewhere else, set `GameDir=` in the `.ini`, or start it with the game folder as its argument (useful for shortcuts):
 
 ```
-AstroRanger_Play.exe "D:\Games\AstroRanger"
+AstroRanger_Play.exe "C:\Program Files (x86)\AstroRanger"
 ```
 
 **Settings** (`AstroRanger_Play.ini`):
@@ -78,9 +78,9 @@ AstroRanger_Play.exe "D:\Games\AstroRanger"
 ## Exe patches
 
 ```sh
-python patches/astro_patch.py --game "D:/Games/AstroRanger"            # apply all
-python patches/astro_patch.py --game "D:/Games/AstroRanger" versus     # apply one
-python patches/astro_patch.py --game "D:/Games/AstroRanger" --revert   # undo
+python patches/astro_patch.py --game "./AstroRanger"            # apply all
+python patches/astro_patch.py --game "./AstroRanger" versus     # apply one
+python patches/astro_patch.py --game "./AstroRanger" --revert   # undo
 python /path/to/astro_patch.py                                         # from inside the game folder
 ```
 
@@ -95,16 +95,16 @@ python /path/to/astro_patch.py                                         # from in
 
 ```sh
 # list every Korean string with its location and how much room it has  (-> ./korean_strings)
-python text/astro_text.py extract --game "D:/Games/AstroRanger"
+python text/astro_text.py extract --game "./AstroRanger"
 
 # write translated copies of the game files, same layout as the game  (-> ./translated_files)
-python text/astro_text.py apply --game "D:/Games/AstroRanger"
+python text/astro_text.py apply --game "./AstroRanger"
 
 # ...or install straight into the game; originals go to <game>/Korean_Backup
-python text/astro_text.py apply --game "D:/Games/AstroRanger" --install
+python text/astro_text.py apply --game "./AstroRanger" --install
 
 # your own translation table / output folder
-python text/astro_text.py apply --game "D:/Games/AstroRanger" --table my_table.tsv --out somewhere
+python text/astro_text.py apply --game "./AstroRanger" --table my_table.tsv --out somewhere
 ```
 
 `translation_en.tsv` is a complete English translation (about 1,960 entries): system messages, tutorial and story dialogue, about 1,300 item names and descriptions, song titles, and UI labels. `apply` uses it by default, wherever the repo is. Edit it or make your own. The format is one `korean<TAB>english` pair per line, with `\n` for line breaks.
@@ -143,17 +143,17 @@ data: zlib streams (stored raw when packedSize == size)
 
 ```sh
 # 1. unpack every archive in <game>/Datas/Texture  (-> ./textures; --png adds PNG copies)
-python images/hsp_extract.py --game "D:/Games/AstroRanger" --png
+python images/hsp_extract.py --game "./AstroRanger" --png
 #    or a single archive / folder of archives
-python images/hsp_extract.py "D:/Games/AstroRanger/Datas/Texture/UI/Mid/Option.hsp" --out option
+python images/hsp_extract.py "./AstroRanger/Datas/Texture/UI/Mid/Option.hsp" --out option
 
 # 2. optional: OCR scan of ./textures for Korean text, with contact sheets  (-> ./ocr)
 python images/find_korean_images.py
 
 # 3. put edited PNGs in ./edit, then rebuild the archives  (-> ./repacked)
-python images/repack_hsp.py --game "D:/Games/AstroRanger"
+python images/repack_hsp.py --game "./AstroRanger"
 #    ...or install them straight into the game; originals go to <game>/Image_Backup
-python images/repack_hsp.py --game "D:/Games/AstroRanger" --install
+python images/repack_hsp.py --game "./AstroRanger" --install
 ```
 
 Every step has `--out` / `--edit` options if you want other folders. `korean_images.txt` lists the **340 UI images** (all 32-bit TGA) confirmed by hand to contain Korean text. `repack_hsp.py` expects edited PNGs at `edit/<archive>.hsp/<path inside archive>.png`, for example:
