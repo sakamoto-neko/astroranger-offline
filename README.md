@@ -3,9 +3,11 @@
 Modding tools for **AstroRanger** (아스트로레인저), a 2008 Korean PC rhythm game by E-ZEN / Biscuit Soft, played offline through the fan-made local server `Start.exe` ("Goodev.net ATconnector").
 
 These mods work with files with these checksums:
+
 **`astrorangerclient.exe`**
 * CRC32: 7DE9636A
 * MD5: 3CDBC04174DB0AF7ECF84844C13E7831
+
 **`Start.exe`** (from Single Patch.7z)
 * CRC32: 5134CFE7
 * MD5: B259CF40E3C092820C78075A93B1250C
